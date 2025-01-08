@@ -1,6 +1,6 @@
-import { useLocalStorage } from "@yamada-ui/use-local-storage";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { NeuralNetwork } from "./network/NeuralNetwork";
+import useLocalStorage from "./hooks/useLocalStorage";
 const net = new NeuralNetwork(10, 10, 3); // 3 input nodes, 3 hidden nodes, 3 output nodes
 
 const PLAYER_CHOICES = {
@@ -14,7 +14,16 @@ function App() {
   const [showAiChoice, setShowAiChoice] = useState(false);
 
   const [score, setScore] = useState({ player: 0, ai: 0 });
-  const [playerChoices, setPlayerChoices] = useLocalStorage("ROCK_PAPER_GAME", [
+  const [playerChoices, setPlayerChoices] = useLocalStorage("ROOK_PAPER" , [
+    PLAYER_CHOICES.ROCK,
+    PLAYER_CHOICES.PAPER,
+    PLAYER_CHOICES.SCISSORS,
+    PLAYER_CHOICES.ROCK,
+    PLAYER_CHOICES.PAPER,
+    PLAYER_CHOICES.SCISSORS,
+    PLAYER_CHOICES.ROCK,
+    PLAYER_CHOICES.PAPER,
+    PLAYER_CHOICES.SCISSORS,
     PLAYER_CHOICES.ROCK,
     PLAYER_CHOICES.PAPER,
     PLAYER_CHOICES.SCISSORS,
@@ -63,12 +72,9 @@ function App() {
       net.train(data.input, data.output);
     });
 
+    console.log({ playerChoices });
     const prediction = net.predict(
-      playerChoices.length >= 10
-        ? playerChoices.slice(playerChoices.length - 10)
-        : new Array(trainData[trainData?.length - 1]?.input.length)
-            .fill(0)
-            .map((_, i) => playerChoices[i] || 0)
+      playerChoices.slice(playerChoices.length - 10, playerChoices.length)
     );
 
     const aiPlay =

@@ -69,6 +69,8 @@ export class NeuralNetwork {
 
   predict(input) {
     let input_layer = input;
+    console.log(input_layer);
+    console.log(this.weights0);
     let hidden_layer = multiply(input_layer, this.weights0).map((v) =>
       this.activation(v, false)
     );
