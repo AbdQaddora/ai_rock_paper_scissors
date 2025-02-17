@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { NeuralNetwork } from "./network/NeuralNetwork";
-import useLocalStorage from "./hooks/useLocalStorage";
 const net = new NeuralNetwork(10, 10, 3); // 3 input nodes, 3 hidden nodes, 3 output nodes
 
 const PLAYER_CHOICES = {
@@ -14,7 +13,7 @@ function App() {
   const [showAiChoice, setShowAiChoice] = useState(false);
 
   const [score, setScore] = useState({ player: 0, ai: 0 });
-  const [playerChoices, setPlayerChoices] = useLocalStorage("ROOK_PAPER" , [
+  const [playerChoices, setPlayerChoices] = useState([
     PLAYER_CHOICES.ROCK,
     PLAYER_CHOICES.PAPER,
     PLAYER_CHOICES.SCISSORS,
