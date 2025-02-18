@@ -14,7 +14,7 @@ This repository contains an AI-powered Rock Paper Scissors game built with React
 - [License](#license)
 
 ## Live Game Link
-[https://ai-rock-paper-scissor.netlify.app/](ai-rock-paper-scissor)
+[ai-rock-paper-scissor](https://ai-rock-paper-scissor.netlify.app/)
 
 ## Features
 
