@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NeuralNetwork } from "./network/NeuralNetwork";
+const TRANING_DATA_SIZE = 25;
 const net = new NeuralNetwork(TRANING_DATA_SIZE, TRANING_DATA_SIZE, 3); // TRANING_DATA_SIZE input nodes, TRANING_DATA_SIZE hidden nodes, 3 output nodes
 
 const PLAYER_CHOICES = {
@@ -8,7 +9,6 @@ const PLAYER_CHOICES = {
   SCISSORS: 2,
 };
 
-const TRANING_DATA_SIZE = 20;
 function App() {
   const [isGameStart, setIsGameStart] = useState(false);
   const [aiValueGuess, setAiValueGuess] = useState(null);
@@ -22,7 +22,7 @@ function App() {
       } else if (index % 3 === 1) {
         return PLAYER_CHOICES.PAPER;
       } else {
-        PLAYER_CHOICES.SCISSORS;
+        return PLAYER_CHOICES.SCISSORS;
       }
     })
   );
