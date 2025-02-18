@@ -2,6 +2,7 @@
 
 This repository contains an AI-powered Rock Paper Scissors game built with React and a simple Neural Network. The AI opponent uses a neural network to predict the player's moves and make decisions accordingly. This project is a fun demonstration of how machine learning can be integrated into a simple game.
 
+
 ## Table of Contents
 
 - [Features](#features)
@@ -11,6 +12,9 @@ This repository contains an AI-powered Rock Paper Scissors game built with React
 - [Usage](#usage)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Live Game Link
+[https://ai-rock-paper-scissor.netlify.app/](ai-rock-paper-scissor)
 
 ## Features
 
