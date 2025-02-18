@@ -28,18 +28,18 @@ This repository contains an AI-powered Rock Paper Scissors game built with React
 
 ## How It Works
 
-The game uses a neural network with 3 input nodes, 10 hidden nodes, and 3 output nodes. The AI predicts the player's next move based on their last 10 choices. The neural network is trained in real-time using the player's historical choices.
+The game uses a neural network with 3 input nodes, TRANING_DATA_SIZE hidden nodes, and 3 output nodes. The AI predicts the player's next move based on their last TRANING_DATA_SIZE choices. The neural network is trained in real-time using the player's historical choices.
 
 ### Neural Network Details
 
-- **Input Layer**: 3 nodes representing Rock, Paper, and Scissors.
-- **Hidden Layer**: 10 nodes for processing the input data.
+- **Input Layer**: TRANING_DATA_SIZE nodes representing Rock, Paper, and Scissors.
+- **Hidden Layer**: TRANING_DATA_SIZE nodes for processing the input data.
 - **Output Layer**: 3 nodes representing the AI's predicted move.
 
 ### Game Logic
 
 1. The player makes a choice (Rock, Paper, or Scissors).
-2. The AI predicts the player's move based on their last 10 choices.
+2. The AI predicts the player's move based on their last TRANING_DATA_SIZE choices.
 3. The AI makes a counter-move to try to win.
 4. The result of the round is calculated, and the scores are updated.
 5. The player's choice is added to the history, and the neural network is retrained.
