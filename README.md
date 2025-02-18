@@ -32,8 +32,8 @@ The game uses a neural network with 3 input nodes, 10 hidden nodes, and 3 output
 
 ### Neural Network Details
 
-- **Input Layer**: 3 nodes representing Rock, Paper, and Scissors.
-- **Hidden Layer**: 10 nodes for processing the input data.
+- **Input Layer**: 20 nodes representing Rock, Paper, and Scissors.
+- **Hidden Layer**: 20 nodes for processing the input data.
 - **Output Layer**: 3 nodes representing the AI's predicted move.
 
 ### Game Logic
