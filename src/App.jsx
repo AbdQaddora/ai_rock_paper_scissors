@@ -1,32 +1,31 @@
 import { useState } from "react";
 import { NeuralNetwork } from "./network/NeuralNetwork";
-const net = new NeuralNetwork(10, 10, 3); // 3 input nodes, 3 hidden nodes, 3 output nodes
+const net = new NeuralNetwork(TRANING_DATA_SIZE, TRANING_DATA_SIZE, 3); // TRANING_DATA_SIZE input nodes, TRANING_DATA_SIZE hidden nodes, 3 output nodes
 
 const PLAYER_CHOICES = {
   ROCK: 0,
   PAPER: 1,
   SCISSORS: 2,
 };
+
+const TRANING_DATA_SIZE = 20;
 function App() {
   const [isGameStart, setIsGameStart] = useState(false);
   const [aiValueGuess, setAiValueGuess] = useState(null);
   const [showAiChoice, setShowAiChoice] = useState(false);
 
   const [score, setScore] = useState({ player: 0, ai: 0 });
-  const [playerChoices, setPlayerChoices] = useState([
-    PLAYER_CHOICES.ROCK,
-    PLAYER_CHOICES.PAPER,
-    PLAYER_CHOICES.SCISSORS,
-    PLAYER_CHOICES.ROCK,
-    PLAYER_CHOICES.PAPER,
-    PLAYER_CHOICES.SCISSORS,
-    PLAYER_CHOICES.ROCK,
-    PLAYER_CHOICES.PAPER,
-    PLAYER_CHOICES.SCISSORS,
-    PLAYER_CHOICES.ROCK,
-    PLAYER_CHOICES.PAPER,
-    PLAYER_CHOICES.SCISSORS,
-  ]);
+  const [playerChoices, setPlayerChoices] = useState(
+    [...new Array(TRANING_DATA_SIZE)]?.map((_, index) => {
+      if (index % 3 === 0) {
+        return PLAYER_CHOICES.ROCK;
+      } else if (index % 3 === 1) {
+        return PLAYER_CHOICES.PAPER;
+      } else {
+        PLAYER_CHOICES.SCISSORS;
+      }
+    })
+  );
 
   const getOutputShape = (choice = Math.floor(Math.random() * 3)) => {
     console.log({
@@ -54,9 +53,9 @@ function App() {
 
   const playerChoice = (choice) => {
     let trainData = [];
-    for (let i = 0; i < playerChoices.length - 10; i++) {
+    for (let i = 0; i < playerChoices.length - TRANING_DATA_SIZE; i++) {
       trainData.push({
-        input: [...playerChoices.slice(i, i + 10)],
+        input: [...playerChoices.slice(i, i + TRANING_DATA_SIZE)],
         output: [...getOutputShape(playerChoices[i + 11])],
       });
     }
@@ -73,7 +72,10 @@ function App() {
 
     console.log({ playerChoices });
     const prediction = net.predict(
-      playerChoices.slice(playerChoices.length - 10, playerChoices.length)
+      playerChoices.slice(
+        playerChoices.length - TRANING_DATA_SIZE,
+        playerChoices.length
+      )
     );
 
     const aiPlay =
